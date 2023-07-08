@@ -1,0 +1,30 @@
+{
+	"Questions" : [
+		{"id" : 1, "question" : "Elements on a webpage are enclosed by which of the following", "optA": "Curly braces", "optB": "Square brackets", "optC": "Angle brackets", "optD": "Parentheses"},
+		{"id" : 2, "question" : "In a website or web application the client side programming language used is", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 3, "question" : "Which of these is a script that runs in the background without affecting ongoing webpage process", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 4, "question" : "AngularJS is perfect for which of these applications"},
+		{"id" : 5, "question" : "In machine programming which of these languages will be most suitable for 'talking' with the micro-controller", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 6, "question" : "Which of these is a script that runs in the background without affecting ongoing webpage process", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 7, "question" : "Which of these is a CSS framework", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 8, "question" : "In a website or web application the client side programming language used is", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 9, "question" : "Which of these is a script that runs in the background without affecting ongoing webpage process", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 10, "question" : "Which of these is a script that runs in the background without affecting ongoing webpage process", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 11, "question" : "AngularJS is perfect for which of these applications", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 12, "question" : "In machine programming which of these languages will be most suitable for 'talking' with the micro-controller", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 13, "question" : "Which of these is a script that runs in the background without affecting ongoing webpage process", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 14, "question" : "Elements on a webpage are enclosed by which of the following", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 15, "question" : "In a website or web application the client side programming language used is", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 16, "question" : "Which of these is a script that runs in the background without affecting ongoing webpage process", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 17, "question" : "AngularJS is perfect for which of these applications", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 18, "question" : "In machine programming which of these languages will be most suitable for 'talking' with the micro-controller", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 19, "question" : "Which of these is a script that runs in the background without affecting ongoing webpage process", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 20, "question" : "Elements on a webpage are enclosed by which of the following", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 21, "question" : "In a website or web application the client side programming language used is", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 22, "question" : "Which of these is a script that runs in the background without affecting ongoing webpage process", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 23, "question" : "AngularJS is perfect for which of these applications", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 24, "question" : "In machine programming which of these languages will be most suitable for 'talking' with the micro-controller", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"},
+		{"id" : 25, "question" : "Which of these is a script that runs in the background without affecting ongoing webpage process", "optA": "Curly braces", "optB": "Curly braces", "optC": "Curly braces", "optD": "Curly braces"}
+	],
+"Time":3
+}

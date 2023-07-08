@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular Tests</title>
+<script src="angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="fstCtrl">This application is designed to let two separate controllers control a single angular variable
+<p>{{x}}</p><button ng-click="incCount()">Try</button>
+</div>
+<div ng-controller="fstCtrl">
+	<p>Click the button to increase count</p><button ng-click="incCount()">Test</button>
+	<p>{{x}}</p>
+</div>
+<script>
+	var app = angular.module("myTest", []);
+	app.controller("fstCtrl", function($scope, $rootScope){
+		$rootScope.x = 0;
+		$rootScope.incCount = function(){
+			$rootScope.x++;
+		};
+
+	});
+	angular.bootstrap(document, ["myTest"]);
+</script>
+</body>
+</html>

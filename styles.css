@@ -1,0 +1,117 @@
+* {box-sizing: border-box; margin: 0; padding: 0;}
+body {font-family: Verdana, sans-serif;}
+
+/* Questions slide container */
+.slideshow-container {width: 98%; position:relative; margin :auto;}
+/* Questions slide container */
+
+.clearfix {display: table; clear: both;}
+.clearfix::before {content: "";}
+
+/* Slides*/
+.qcardtemplate {
+	background-color: #f1f1f1;
+	width: 96%; position: relative;
+	margin: auto; height: 400px; 
+	margin-top: 10px;
+	padding: 10px;
+	padding-bottom: -5%;
+	overflow: auto;
+	box-shadow: 2px 8px 5px #cccccc;
+	display: none; border-radius: 30px;	
+}
+/* Slides*/
+
+#infoTopL {position: absolute; bottom:50px;}
+#infoTopR {position: absolute; bottom:50px; right: 32px;}
+#infoMidL {position: absolute; bottom:27px;}
+#infoMidR {position: absolute; bottom:27px; right: 32px;}
+#infoBtmL {position: absolute; bottom:4px;}
+#infoBtmR {position: absolute; bottom:4px; right: 32px;}
+
+.qcardtemplate .wrapper {
+	width: 32.222%;
+	border-radius: 10px; height: 80%;
+	float: left; border: 1px solid orange;
+	background-color: white;
+	margin: 4px 0.5%;
+	overflow: auto;
+	position: relative;
+}
+
+.numbering {
+	text-align: center;
+	color: #4d1919;
+	margin-top: 3px;
+}
+
+.qnum {
+	display: block; width: 25px; border:2px solid black; 
+	border-radius: 50%; margin: auto;
+}
+
+.ques {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;font-size: 1.15em; 
+	margin-left: 10px; margin-top: 6px; margin-bottom: 30px; margin-right: 5px;
+}
+
+.opts {position: absolute; bottom: 15px; left: 50%;transform: translateX(-50%);
+  width: 95%; margin: auto;}
+
+.opts .opt input[type="radio"] {transform: translateY(50%);}
+
+.opt {
+	font-size: 1.08em;
+	line-height: 1.6;
+}
+
+div.qcardtemplate div div p input[type="radio"] {
+	float: right; margin-right: 20px;
+}
+
+.controls {
+	background: linear-gradient(#130606, #595959); 
+	width: 96%; 
+	margin: auto; height: 100px; 
+	margin-top: 10px;
+	padding: 10px;
+	padding-bottom: -5%;
+	overflow: auto;
+	box-shadow: 2px 8px 5px #cccccc;
+	border-radius: 4px;
+}
+
+.ctrl{
+	text-align: center; position: relative; background-color: white; width: 100%;
+}
+
+.extnav {
+	 width: 80px; height: 40px; padding: 8px 8px;
+	font-family: "Palatino Linotype", cursive, sans-serif;
+	font-size: 1.03em;  color: white; background-color: rgb(121, 255, 121); border-width: 0;
+	 border-radius: 0; transition: color 1s, box-shadow 0.2s; cursor: pointer;
+}
+
+.prev:hover, .next:hover {
+	color: white; box-shadow: 2px 4px 5px #cccccc;
+}
+
+div.pagwrap {display: inline-block}
+ul.pagnav {display: inline-block; padding: 0; margin: 0;}
+ul.pagnav li {display: inline;}
+ul.pagnav li button {color: black; float: left; padding: 10px 16px; text-decoration: none;
+  transition: background-color .3s; border: 1px solid #ddd; margin: 10px;}
+
+ul.pagnav li select {color: black; background-color: grey; float: left; padding: 10px 16px; 
+	text-decoration: none;
+  transition: background-color .3s; border: 1px solid #ddd; margin: 10px; border-radius: 50%}
+
+div.ctrl button.submit {bottom: 20px; right: 3px; position: absolute;
+	width: 80px; height: 30px; padding: 4px 4px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-size: 1.03em;  color: white; background-color: orange; border-width: 0;
+	border-radius: 5px; transition: color 1s, box-shadow 1s, background-color 1s;
+	 cursor: pointer;
+}
+div.ctrl button.submit:hover {color: orange; box-shadow: 2px 4px 5px #cccccc;
+ background-color: white;}

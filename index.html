@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Online Tester</title>
+<link rel="stylesheet" href="styles.css">
+<script src="angular.min.js"></script>
+<script src="jquery.min.js"></script>
+<script>
+var jq = $.noConflict();
+
+jq(document).ready(function(){
+		jq("div#application").hide();
+});
+
+function getAnswers(){
+	var allChoices = [];
+	allQdivs = document.getElementsByClassName("opts");
+	tq = allQdivs.length;
+	q = 0;
+	while(q < tq){
+		opts = allQdivs[q].getElementsByClassName("q"+(q+1));
+		tOpts = opts.length;
+		for(i=0;i<tOpts;i++) {
+			if (opts[i].checked === true) {
+				choice = opts[i];
+				allChoices[q] = choice.value;
+			} 
+		}
+		if (allChoices[q] == undefined) {
+			allChoices[q] = 0;
+		}
+		q++;
+	} 
+	return allChoices;
+}
+
+function showResult() {
+	var xhttp = new XMLHttpRequest();
+	arr = getAnswers();
+	ansString =  arr.join();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+				var respStr = xhttp.responseText;
+			document.getElementById("result").innerHTML = respStr;
+		}
+	};
+	xhttp.open("POST", "answers.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("ansString="+ansString);
+}
+
+</script>
+</head>
+<body>
+
+<div id="startExam" style="padding: 1%; margin: auto; margin-top: 5px; margin-bottom: 5px; width: 98%; padding-left: 2.5%;">
+	<button id="start" style="height: 40px; border-radius: 8px; padding: 1%;" onclick="startAngular()">Start</button>
+</div>
+
+<div  ng-controller="myCtrl" id="application">
+ <div class="slideshow-container">
+  <div class="qcardtemplate">
+	<div class="wrapper" ng-repeat="x in questions"  ng-show="((count > $index) && (baseCount < $index)) || (( (allQuestions() - $index) <= 3) && (count >= allQuestions() ))"> 
+	 <p class="numbering"><span class="qnum">{{ $index + 1}}</span></p>
+	 <p class="ques">{{ x.question }} ?</p>
+	 <div class="opts">
+	 	<p class="opt">1) {{x.optA}} <input type="radio" name="q{{$index + 1}}" value="a" class="q{{$index + 1}}" ng-click="answered()"></p>
+	 	<p class="opt">2) {{x.optB}} <input type="radio" name="q{{$index + 1}}" value="b" class="q{{$index + 1}}" ng-click="answered()"></p>
+	 	<p class="opt">3) {{x.optC}} <input type="radio" name="q{{$index + 1}}" value="c" class="q{{$index + 1}}" ng-click="answered()"></p>
+	 	<p class="opt">4) {{x.optD}} <input type="radio" name="q{{$index + 1}}" value="d" class="q{{$index + 1}}" ng-click="answered()"></p>
+	 </div>
+	</div>
+	<div class="clearfix"></div>
+	<span id="infoTopL">{{ allQuestions() }}</span> <span id="infoTopR">Time: {{timeAlloc}} minutes</span>
+	<span id="infoMidL">{{ answered() }}</span> <span id="infoMidR">Time spent: {{ timeSpent }} minutes</span>
+	<span id="infoBtmL">Unanswered: {{ allQuestions() - answered() }}</span> <span id="infoBtmR">Time left: {{ timeAlloc - timeSpent }} minutes</span>
+	
+   </div>
+  </div>
+ 
+
+ <div class="controls">
+	<div class="ctrl">
+
+	 <div class="pagwrap">
+	   <ul class="pagnav">
+	 	<li><button class="prev" ng-click="prevPage()">Previous</button></li>
+	 	<li><select  ng-model="selIndex">
+	 		<option ng-repeat="x in questions" value="{{x.id}}">{{ x.id }}</option>
+	 	</select></li>
+	 	<li><button ng-click="selPage()">Go</button></li>
+	 	<li><button class="next" ng-click="nxtPage()">Next</button></li>
+	  </ul>
+	 </div>
+	 <button class="submit" onclick="showResult()">Submit</button>
+
+	</div>
+	
+</div>
+</div>
+<p id="result" style="border: 2px solid brown; width: 89%; height: 20px; font-family: Trebuchet 'comic sans' serif; margin: auto; margin-top: 50px;"></p>
+
+<script src="scripts.js"></script>
+<script>
+
+var i = 0;
+var app = angular.module("myQues", []);
+app.controller("myCtrl", function($scope, $http, $interval){
+   $http.get('questions.json').then(function (response) {$scope.questions = response.data.Questions;
+                                                         $scope.timeAlloc = response.data.Time;});
+
+	$scope.count = 3;
+	$scope.baseCount = -1;
+	$scope.timeSpent = 0;
+	$scope.currCount = 3;
+	$scope.currBaseCount = -1;
+
+	$scope.nxtPage = function() {
+		if ($scope.count < $scope.allQuestions()) {
+		   $scope.count++;
+		   $scope.baseCount++;
+		}
+	};
+	$scope.prevPage = function() {
+		if ($scope.count > 3) {
+		    $scope.count = $scope.count - 1;
+		    $scope.baseCount = $scope.baseCount - 1;
+		}
+	};
+	$scope.selPage = function() {
+		if ( ( ($scope.currCount + parseInt($scope.selIndex)) <= ($scope.allQuestions() + 1) ) && ($scope.selIndex > 3) ) {
+		    $scope.count = $scope.currCount + parseInt($scope.selIndex) - 2;
+		    $scope.baseCount = $scope.currBaseCount + parseInt($scope.selIndex) - 2;
+		    $scope.currCount = $scope.count - parseInt($scope.selIndex) + 2;
+			$scope.currBaseCount = $scope.baseCount - parseInt($scope.selIndex) + 2;
+	    }
+	     else if (parseInt($scope.selIndex) <= 3)  {
+	    	         $scope.count = 3;
+	    	         $scope.baseCount = -1;
+	    } 
+	         else if (parseInt($scope.selIndex) >= ($scope.allQuestions() - 1)) {
+	         	$scope.count = $scope.allQuestions();
+	         	$scope.baseCount = $scope.allQuestions() - 4; 
+	         }
+	};
+
+	$scope.allQuestions = function() {
+	    allQdivs = document.getElementsByClassName("opts");
+	    tq = allQdivs.length; 
+	    document.getElementById("infoTopL").innerHTML = "Total Questions: " + tq;
+	    return tq;
+    };
+    $scope.answered = function() {
+        var allChoices = [];
+	    allQdivs = document.getElementsByClassName("opts");
+	    tq = allQdivs.length;
+	    q = 0;
+	    aq = 0;
+	       while(q < tq){
+		     opts = allQdivs[q].getElementsByClassName("q"+(q+1));
+		     tOpts = opts.length;
+		     for(i=0;i<tOpts;i++) {
+			   if (opts[i].checked === true) {
+				aq++;
+			   } 
+		     }
+		     q++;
+	      } 
+	document.getElementById("infoMidL").innerHTML = "Answered: " + aq;
+	return aq;
+    }
+
+    var promise = $interval(function() {
+      if ($scope.timeSpent < ($scope.timeAlloc) - 1) {
+    	   $scope.timeSpent++;
+      } else {
+      	$interval.cancel(promise);
+      	$scope.timeSpent++;
+      	jq("div#application").hide();
+      }
+    }, 60000);
+});
+
+function startAngular(){
+ angular.bootstrap(document, ['myQues']);
+ jq(document).ready(function(){
+ 	jq("div#application").show();
+});
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Tester</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+function getAnswers(){
+	var allChoices = [];
+	allQdivs = document.getElementsByClassName("prob");
+	tq = allQdivs.length+1;
+	q = 1;
+	while(q < tq){
+		opts = allQdivs[q-1].getElementsByClassName("q"+q);
+		tOpts = opts.length;
+		for(i=0;i<tOpts;i++) {
+			if (opts[i].checked === true) {
+				choice = opts[i];
+				allChoices[q-1] = choice.value;
+			}
+		}
+		q++;
+	}
+	return allChoices;
+}
+
+function showResult() {
+	var x, respAns, score;
+	score = 0;
+	x = 1;
+	arr = getAnswers();
+	ansString =  arr.join();
+    var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+				var respObj = JSON.parse(xhttp.responseText);
+				respAns = respObj["answers"];
+				for(;x-1 < respAns.length;x++) {
+					if (respAns[x-1].answer === arr[x-1]) {
+						score = score + respAns[x-1].weight;
+					} 
+				}
+			document.getElementById("result").innerHTML = score;
+		}
+	};
+	xhttp.open("POST", "answers.json", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(ansString);
+}
+
+</script>
+</head>
+<body>
+
+<form action="answers.php">
+  <div class="qcardtemplate">
+	<div class="wrapper"> 
+	 <p class="numbering"><span class="numbering">1</span></p>
+	 <p class="ques">Elements on a webpage are enclosed by which of the following ?</p>
+	 <div class="prob">
+	 	<p>1) Curly braces <input type="radio" name="q1" value="a" class="q1" data-weight=2></p>
+	 	<p>2) Square braces <input type="radio" name="q1" value="b" class="q1" data-weight=2></p>
+	 	<p>3) Angle braces <input type="radio" name="q1" value="c" class="q1" data-weight=2></p>
+	 	<p>4) Parentheses <input type="radio" name="q1" value="d" class="q1" data-weight=2></p>
+	 	<br>
+	 </div>
+	</div>
+
+	<div class="wrapper">
+		<p class="numbering"><span class="numbering">2</span></p>
+		<p class="ques">In a website or web application the client side programming language used is ?</p>
+		<div  class="prob">
+	 	<p>1) Curly braces <input type="radio" name="q2" value="a" class="q2" data-weight=5></p>
+	 	<p>2) Square braces <input type="radio" name="q2" value="b" class="q2" data-weight=5></p>
+	 	<p>3) Angle braces <input type="radio" name="q2" value="c" class="q2" data-weight=5></p>
+	 	<p>4) Parentheses <input type="radio" name="q2" value="d" class="q2" data-weight=5></p>
+	 	<br>
+	 </div>
+	</div>
+
+	<div class="wrapper">
+		<p class="numbering"><span class="numbering">3</span></p>
+		<p class="ques">Which of these is a script that runs in the background without affecting ongoing webpage process ?</p>
+		<div class="prob">
+	 	<p>1) Curly braces <input type="radio" name="q3" value="a" class="q3" data-weight=10></p>
+	 	<p>2) Square braces <input type="radio" name="q3" value="b" class="q3" data-weight=10></p>
+	 	<p>3) Angle braces <input type="radio" name="q3" value="c" class="q3" data-weight=10></p>
+	 	<p>4) Parentheses <input type="radio" name="q3" value="d" class="q3" data-weight=10></p>
+	 	<br>
+	 </div>
+	</div>
+	<div class="clearfix"></div>
+  </div>
+ </form>
+
+ <div class="controls">
+	<div class="ctrl" style="border: 2px solid blue;">
+	<span class="timers">Time spent: 00:00</span>
+
+	 <div class="pagwrap">
+	   <ul class="pagnav">
+	 	<li><button class="extnav">Previous</button></li>
+	 	<li><button class="qnav">1</button></li>
+	 	<li><button class="qnav">2</button></li>
+	 	<li><button class="qnav">3</button></li>
+	 	<li><button class="qnav">4</button></li>
+	 	<li><button class="qnav">5</button></li>
+	 	<li><button class="extnav">Next</button></li>
+	  </ul>
+	 </div>
+	 <button class="submit" onclick="getAnswers()">Submit</button>
+	 <span class="timerl">Time left: 00:00</span>
+
+	</div>
+	
+</div>
+
+<button onclick="showResult()">Try Me</button>
+<p id="result" style="border: 2px solid brown; width: 89%; height: 20px; font-family: Trebuchet 'comic sans' serif; margin: auto;"></p>
+</body>
+</html>
